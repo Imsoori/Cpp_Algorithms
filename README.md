@@ -1,2 +1,2 @@
 # Cpp_Algorithms
-Solve algorithm problems in C++
+Solve algorithm problems with C++

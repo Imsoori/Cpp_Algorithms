@@ -1,61 +1,34 @@
 #include <iostream>
-#include <queue>
 #include <vector>
-#include <string>
+#include <queue>
+#include <algorithm>
 using namespace std;
 
+//76. 이항 계수(메모이제이션)
+int n, r;
+int memo[21][21];
 
-string checkVPS(char m_str[])
+int Combination(int a, int b)
 {
-   vector <char> v;
-   for(int i=0; m_str[i]!='\0'; i++)
-      {
-         if(m_str[i]=='(')
-         {
-            v.push_back('(');
-         }
-         else{
-            if(v.size())
-            {
-               v.pop_back();
-            }
-            else{
-               return "NO";
-            }
-            
-         }
-      }
-
-      if(v.size()){
-         return "NO";
-      }else{
-         return "YES";
-      }
+	if (memo[a][b]) return memo[a][b];
+	if (a == b || b == 0) return 1;
+	else {
+		return memo[a][b] = Combination(a - 1, b) + Combination(a - 1, b - 1);
+	}
 }
 
 
 int main()
 {
-   char m_str[51];
-   int n;
-   scanf("%d", &n);
-   queue <string> res;
-   
-  
+	//nCr = n-1Cr-1 + n-1Cr;
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-   for(int x=0; x<n; x++)
-   {
-       scanf("%s", m_str);
-       res.push(checkVPS(m_str));
-      
-   }
+	cin >> n >> r;
 
-   for(int i=0; i<n; i++)
-   {
-      printf("%s\n", res.front().c_str());
-      res.pop();
-   }
+	cout << Combination(n, r);
 
+	return 0;
 
-   return 0;
 }

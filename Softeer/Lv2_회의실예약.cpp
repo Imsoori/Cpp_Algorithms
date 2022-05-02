@@ -6,7 +6,7 @@
 
 using namespace std;
 int n, m;
-int RoomArr[51][10];
+int RoomArr[51][24];
 vector <string> RoomName;
 priority_queue <string> Room;
 
@@ -34,7 +34,7 @@ int main(int argc, char** argv)
 			{
 				for (int j = s; j < e; j++)
 				{
-					RoomArr[k][j] = 1;
+					RoomArr[k][j] = 1; // room, time(9)
 				}
 			}
 		}
@@ -44,29 +44,56 @@ int main(int argc, char** argv)
 	{
 		cout << "Room " << RoomName[i] << ":\n";
 		vector <pair<int, int>> timeTable;
-		int startEmpty = 18, endEmpty = 0;
+		int startEmpty = 17, endEmpty = 9;
 		bool available = false;
-		for (int j = 0; j < 10; j++)
+		for (int j = 9; j < 18; j++)
 		{
 			if (RoomArr[i][j] == 0)
 			{
-				startEmpty = min(startEmpty, i);
+				startEmpty = min(startEmpty, j);
 				available = true;
 			}
 			else {
-				endEmpty = i;
+				endEmpty = j;
 			}
-			if (available && endEmpty != 0)
+
+			if (available && endEmpty != 9 && startEmpty != 17)
 			{
+				if (startEmpty > endEmpty) endEmpty = 18;
 				timeTable.push_back({ startEmpty,endEmpty });
+				startEmpty = 17, endEmpty = 9;
 			}
-		}
-		if (!available)
-		{
-			cout << "Not available\n";
+
 		}
 
-		cout << "-----\n";
+		if (startEmpty == endEmpty)
+		{
+			if (startEmpty == 9 && available)
+			{
+				cout << "1 available:\n";
+				cout << "09-18\n";
+			}
+			else if (startEmpty == 17 && !available)
+			{
+				cout << "Not available\n";
+			}
+		}
+
+		if (timeTable.size())
+		{
+			cout << timeTable.size() << " available:\n";
+
+			for (int k = 0; k < timeTable.size(); k++)
+			{
+				printf("%02d-%02d\n", timeTable[k].first, timeTable[k].second);
+			}
+		}
+
+		if (i != RoomName.size() - 1)
+		{
+			cout << "-----\n";
+		}
+
 	}
 	return 0;
 }

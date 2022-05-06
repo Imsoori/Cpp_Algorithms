@@ -1,53 +1,61 @@
 #include<iostream>
 #include<vector>
 
+// 2022-05-05 testcase 33-3 x
 using namespace std;
 
-int M, N, K, input;
+int M, N, K;// , input;
 vector <int> secretRecipe;
 vector <int> customButton;
 string output = "normal";
+
 int main(int argc, char** argv)
 {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
 
 	cin >> M >> N >> K;
 
+	secretRecipe.resize(M);
+	customButton.resize(N);
+
 	for (int i = 0; i < M; i++)
 	{
-		cin >> input;
-		secretRecipe.push_back(input);
+		cin >> secretRecipe[i];
 	}
 
 	for (int i = 0; i < N; i++)
 	{
-		cin >> input;
-		customButton.push_back(input);
+		cin >> customButton[i];
 	}
 
-	int j = 0;
+	int sIndex = 0;
+	int cIndex = 0;
+	int secretCnt = 0;
 
-	for (int i = 0; i < customButton.size(); i++)
+	while (cIndex < customButton.size())
 	{
-		if (customButton[i] == secretRecipe[j])
+		if (secretRecipe[sIndex] == customButton[cIndex])
 		{
-			if (j < secretRecipe.size())
-			{
-				j += 1;
-			}
-
-			if (j == secretRecipe.size() - 1) {
-				output = "secret";
-				break;
-
-			}
+			secretCnt++;
+			sIndex++;
+			cIndex++;
 		}
 		else {
-			j = 0;
+			sIndex = 0;
+			secretCnt = 0;
+			if (secretRecipe[sIndex] != customButton[cIndex])
+			{
+				cIndex++;
+			}
+		}
+
+		if (secretCnt == secretRecipe.size())
+		{
+			output = "secret";
+			break;
 		}
 	}
+
+
 
 	cout << output << endl;
 

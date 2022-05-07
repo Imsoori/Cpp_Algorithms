@@ -20,6 +20,7 @@ int main(int argc, char** argv)
 		RoomName.push_back(str);
 	}
 
+
 	sort(RoomName.begin(), RoomName.end());
 
 	for (int i = 0; i < m; i++)
@@ -43,41 +44,42 @@ int main(int argc, char** argv)
 	for (int i = 0; i < RoomName.size(); i++)
 	{
 		cout << "Room " << RoomName[i] << ":\n";
+
 		vector <pair<int, int>> timeTable;
-		int startEmpty = 17, endEmpty = 9;
+		int startEmpty = 18, endEmpty = 9;
 		bool available = false;
 		for (int j = 9; j < 18; j++)
 		{
 			if (RoomArr[i][j] == 0)
 			{
 				startEmpty = min(startEmpty, j);
-				available = true;
+				if (j == 17)
+				{
+					endEmpty = 18;
+					available = true;
+				}
+
 			}
 			else {
 				endEmpty = j;
+				if (startEmpty != 18)
+				{
+					available = true;
+				}
+
 			}
 
-			if (available && endEmpty != 9 && startEmpty != 17)
+			if (available)
 			{
-				if (startEmpty > endEmpty) endEmpty = 18;
 				timeTable.push_back({ startEmpty,endEmpty });
-				startEmpty = 17, endEmpty = 9;
+				available = false;
+				startEmpty = 18;
 			}
+
 
 		}
 
-		if (startEmpty == endEmpty)
-		{
-			if (startEmpty == 9 && available)
-			{
-				cout << "1 available:\n";
-				cout << "09-18\n";
-			}
-			else if (startEmpty == 17 && !available)
-			{
-				cout << "Not available\n";
-			}
-		}
+
 
 		if (timeTable.size())
 		{
@@ -87,6 +89,10 @@ int main(int argc, char** argv)
 			{
 				printf("%02d-%02d\n", timeTable[k].first, timeTable[k].second);
 			}
+		}
+		else if (startEmpty > endEmpty)
+		{
+			cout << "Not availabe\n";
 		}
 
 		if (i != RoomName.size() - 1)

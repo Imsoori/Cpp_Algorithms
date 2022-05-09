@@ -11,6 +11,34 @@ int day;
 int dx[4] = { 1,0,-1,0 };//동
 int dy[4] = { 0,1,0,-1 };
 
+void bfs(int y, int x)
+{
+	queue <pair<int, int>> q;
+	q.push({ y,x });
+
+	while (!q.empty())
+	{
+		int cy = q.front().first;
+		int cx = q.front().second;
+		q.pop();
+
+		for (int d = 0; d < 4; d++)
+		{
+			int ny = cy + dy[d];
+			int nx = cx + dx[d];
+
+			if (ny<0 || nx<0 || ny>N - 1 || nx>M - 1) continue;
+
+			if (m_map[ny][nx] == 0 && m_visited[ny][nx] == 0)
+			{
+				m_visited[ny][nx] = 1;
+				q.push({ ny,nx });
+			}
+
+		}
+	}
+
+}
 
 int main(int argc, char** argv)
 {
@@ -35,90 +63,67 @@ int main(int argc, char** argv)
 		}
 	}
 
-	// 바깥 공기 표시하기 
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < M; j++)
-		{
-			int cy = i;
-			int cx = j;
+	m_visited[1][1] = 1;
 
-			if (m_map[cy][cx] == 1) continue;
+	//바깥공기 bfs
+	bfs(1, 1);
 
-			for (int d = 0; d < 4; d++)
-			{
-				int ny = cy + dy[d];
-				int nx = cx + dx[d];
-
-				if (ny<0 || nx<0 || ny>N - 1 || nx>M - 1) continue;
-
-				if (m_map[ny][nx] == 1)
-				{
-					m_map[cy][cx] = 2; // 바깥공기 
-				}
-
-			}
-		}
-
-	}
-
-	// 바깥 공기와 인접한 치즈 구하기 
-
+	int cy, cx, cnt, ny, nx;
 	while (!icePos.empty())
 	{
 		queue <pair<int, int>> iceCnt;
 		for (int i = 0; i < icePos.size(); i++)
 		{
-			int cy = icePos[i].first;
-			int cx = icePos[i].second;
-			int cnt = 0;
+			cy = icePos[i].first;
+			cx = icePos[i].second;
+			cnt = 0;
 
 			for (int d = 0; d < 4; d++)
 			{
-				int ny = cy + dy[d];
-				int nx = cx + dx[d];
+				ny = cy + dy[d];
+				nx = cx + dx[d];
 
 				if (ny<0 || nx<0 || ny>N - 1 || nx>M - 1) continue;
 
-				if (m_map[ny][nx] == 2)
+				if (m_visited[ny][nx] == 1)
 				{
 					cnt++;
+
+					if (cnt > 1)
+					{
+						m_map[cy][cx] = 0;
+						iceCnt.push({ cy,cx });
+						//continue;
+					}
 				}
 
 			}
-
-			if (cnt > 1)
-			{
-				iceCnt.push({ cy,cx });
-			}
 		}
+
+		icePos.clear();
 
 		while (!iceCnt.empty())
 		{
-			m_map[iceCnt.front().first][iceCnt.front().second] = 0;
+			int y = iceCnt.front().first;
+			int x = iceCnt.front().second;
 			iceCnt.pop();
+
+			m_visited[y][x] = 1;
+			bfs(y, x);
 		}
 
 		day++;
-
-		icePos.clear();
 
 		for (int i = 0; i < N; i++)
 		{
 			for (int j = 0; j < M; j++)
 			{
-				if (m_map[i][j] == 1)
+				if (m_map[i][j])
 				{
 					icePos.push_back({ i,j });
-
 				}
-
 			}
-
 		}
-
-
-
 	}
 
 	cout << day << endl;

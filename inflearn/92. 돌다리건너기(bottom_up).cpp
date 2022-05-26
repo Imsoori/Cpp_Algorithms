@@ -6,10 +6,10 @@
 #include <deque>
 using namespace std;
 
-//3. 돌다리 건너기(Bottom-Up)
+// 3. 돌다리 건너기 (bottom-up)
 
-int n;
 int dp[50];
+int n;
 
 int main()
 {
@@ -17,18 +17,15 @@ int main()
 
 	cin >> n;
 
-	// 3 = 1+1+1
-	// 2+ 1
-	// 1+ 2
 	dp[1] = 1;
 	dp[2] = 2;
 
-	for (int i = 3; i <= n+1; i++)
+	for (int i = 3; i <= n + 1; i++)
 	{
 		dp[i] = dp[i - 1] + dp[i - 2];
 	}
 
-	cout << dp[n+1] << endl;
+	cout << dp[n + 1] << endl;
 
 	return 0;
 }

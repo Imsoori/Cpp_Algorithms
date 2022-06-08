@@ -16,7 +16,7 @@ Lesson 3 Time Complexity
 -----------------------------------------
 #### - [FrogJmp](https://app.codility.com/demo/results/trainingXWR3YN-BYZ/)
 #### - [PermMissingElem](https://app.codility.com/demo/results/trainingFHK2W3-4UJ/)
-#### - [TapeEquilibrium]
+#### - [TapeEquilibrium](https://app.codility.com/demo/results/trainingSEK269-AAS/)
 
 
 Lesson 4 Counting Elements

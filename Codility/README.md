@@ -9,5 +9,4 @@ Lesson 1 iterations
 Lesson 2 Arrays
 -----------------------------------------
 #### - [CyclicRotation](https://app.codility.com/demo/results/training5FPUBP-YUB/)
-#### - [OddOccurrencesInArray]
-
+#### - [OddOccurrencesInArray](https://app.codility.com/demo/results/trainingP465WK-VW7/)

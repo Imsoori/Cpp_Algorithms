@@ -21,7 +21,7 @@ Lesson 3 Time Complexity
 
 Lesson 4 Counting Elements
 -----------------------------------------
-#### - [FrogRiverOne]
-#### - [PermCheck]
+#### - [FrogRiverOne](https://app.codility.com/demo/results/trainingCMWRBP-VP9/)
+#### - [PermCheck](https://app.codility.com/demo/results/training5H8XB4-2CT/)
 #### - [MaxCounters]
 #### - [MissingInteger]

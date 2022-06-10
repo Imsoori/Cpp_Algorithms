@@ -24,4 +24,19 @@ Lesson 4 Counting Elements
 #### - [FrogRiverOne](https://app.codility.com/demo/results/trainingCMWRBP-VP9/)
 #### - [PermCheck](https://app.codility.com/demo/results/training5H8XB4-2CT/)
 #### - [MaxCounters]
-#### - [MissingInteger]
+#### - [MissingInteger](https://app.codility.com/demo/results/trainingG3BWP2-72A/)
+
+
+Lesson 5 Prefix Sums
+-----------------------------------------
+#### - [PassingCars]
+#### - [CountDiv]
+#### - [GenomicRangeQuery]
+#### - [MinAvgTwoSlice]
+
+Lesson 6 Sorting
+----------------------------------------
+#### - [Distinct](https://app.codility.com/demo/results/trainingNS8V2Q-TKV/)
+#### - [MaxProductOfThree]
+#### - [Triangle]
+#### - [NumberOfDiscIntersections]

@@ -40,3 +40,11 @@ Lesson 6 Sorting
 #### - [MaxProductOfThree]
 #### - [Triangle]
 #### - [NumberOfDiscIntersections]
+
+
+Lesson 7 Stacks ans Queues
+----------------------------------------
+#### - [Brackets](https://app.codility.com/demo/results/trainingB9QXFJ-KCJ/)
+#### - [Fish]
+#### - [Nesting]
+#### - [StoneWall]
